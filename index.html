@@ -24,13 +24,26 @@
         header {
             background-color: var(--primary);
             color: white;
-            text-align: center;
-            padding: 4rem 1rem;
+            padding: 2rem 1rem;
             border-bottom: 4px solid var(--secondary);
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .logo-img {
+            max-height: 120px;
+            width: auto;
+            border-radius: 8px;
         }
         header h1 {
             font-family: 'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif;
-            font-size: 6em;
+            font-size: 5em;
             margin: 0;
             font-weight: normal;
             letter-spacing: 1px;
@@ -42,6 +55,12 @@
             color: #FDFBF7;
             font-weight: 300;
             letter-spacing: 0.5px;
+        }
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
         }
         nav {
             background-color: var(--secondary);
@@ -214,8 +233,13 @@
 <body>
 
     <header>
-        <h1>Simple Sourdough 4 U</h1>
-        <p>Artisan Sourdough Breads, Treats & Goodness Made from Simple Ingridents</p>
+        <div class="header-content">
+            <img src="Jamies_Logo.jpg" alt="Simple Sourdough Logo" class="logo-img">
+            <div>
+                <h1>Simple Sourdough 4 U</h1>
+                <p>Artisan Breads, Treats & Goodness Made from Simple Ingridents</p>
+            </div>
+        </div>
     </header>
 
     <nav>
@@ -363,8 +387,7 @@
                     </div>
                 </div>
 				<div class="product-card">
-                    <img src="Oreos2.jpg" 
-	alt="Sourdough Oreo Cookies" class="item-photo">
+                    <img src="Oreos2.jpg" alt="Sourdough Oreo Cookies" class="item-photo">
                     <div class="item-content">
                         <div class="item-details">
                             <h4>Sourdough Oreo Cookies (6-pack)</h4>
@@ -372,14 +395,12 @@
                         </div>
                         <div class="item-footer">
                             <span class="price">$15.00</span>
-                            <button onclick="addToCart(Sourdough Oreo Cookies (6-pack)', 15.00)">Add to Cart</button>
+                            <button onclick="addToCart('Sourdough Oreo Cookies (6-pack)', 15.00)">Add to Cart</button>
                         </div>
                     </div>
                 </div>
-            </div>
-			<div class="product-card">
-                    <img src=" Sourdough_Reese's_Pieces_Cookies.jpg " 
-							alt="Sourdough Reese's Pieces Cookies" class="item-photo">
+                <div class="product-card">
+                    <img src="Sourdough_Reese's_Pieces_Cookies.jpg" alt="Sourdough Reese's Pieces Cookies" class="item-photo">
                     <div class="item-content">
                         <div class="item-details">
                             <h4>Sourdough Reese's Pieces Cookies (12-pack)</h4>
@@ -387,10 +408,12 @@
                         </div>
                         <div class="item-footer">
                             <span class="price">$15.00</span>
-                            <button onclick="addToCart(Sourdough Reese's Pieces Cookies (12-pack)', 15.00)">Add to Cart</button>
+                            <button onclick="addToCart('Sourdough Reese\'s Pieces Cookies (12-pack)', 15.00)">Add to Cart</button>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
         <!-- Cart Section -->
         <div id="cart-section">
