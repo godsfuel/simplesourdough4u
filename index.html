@@ -25,16 +25,16 @@
             background-color: var(--primary);
             color: white;
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 3.5rem 1rem;
         }
         header h1 {
-            font-size: 3em;
+            font-size: 3.5em;
             margin: 0;
             font-weight: 800;
             letter-spacing: -1px;
         }
         header p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-top: 0.5rem;
             color: var(--accent);
         }
@@ -67,7 +67,7 @@
             text-align: center;
             color: var(--primary);
             margin-bottom: 2rem;
-            font-size: 2rem;
+            font-size: 2.2rem;
             border-bottom: 2px solid var(--secondary);
             padding-bottom: 0.5rem;
         }
@@ -87,38 +87,68 @@
         }
         .item-row {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 0.75rem 0;
+            justify-content: space-between;
+            padding: 1rem 0;
             border-bottom: 1px dashed #f0f0f0;
+            gap: 1.25rem;
         }
         .item-row:last-child {
             border-bottom: none;
         }
+        .item-graphic {
+            width: 85px;
+            height: 85px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.05);
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-align: center;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        .bg-original { background: linear-gradient(135deg, #A0522D, #CD853F); }
+        .bg-jalapeno { background: linear-gradient(135deg, #2E8B57, #3CB371); }
+        .bg-pancake { background: linear-gradient(135deg, #DAA520, #F4A460); }
+        .bg-muffin { background: linear-gradient(135deg, #D2691E, #E9967A); }
+        .bg-cinnamon { background: linear-gradient(135deg, #8B4513, #D2691E); }
+        .bg-pumpkin { background: linear-gradient(135deg, #D27D2D, #E59866); }
+        .bg-cookie { background: linear-gradient(135deg, #654321, #8B5A2B); }
+        .bg-dog { background: linear-gradient(135deg, #CD853F, #DEB887); }
+
+        .item-details {
+            flex-grow: 1;
+        }
         .item-details h4 {
             margin: 0 0 0.25rem 0;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            color: var(--text);
         }
         .item-details p {
             margin: 0;
             color: #666;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
         .item-action {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.25rem;
+            flex-shrink: 0;
         }
         .price {
             font-weight: bold;
             color: var(--primary);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
         button {
             background-color: var(--primary);
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 0.55rem 1.1rem;
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
@@ -142,6 +172,7 @@
         #cart-items li {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 0.5rem 0;
             border-bottom: 1px solid #eee;
         }
@@ -157,7 +188,7 @@
             background-color: #2b8b3a;
             color: white;
             text-align: center;
-            padding: 0.75rem;
+            padding: 0.85rem;
             font-size: 1.2rem;
             text-decoration: none;
             border-radius: 4px;
@@ -199,6 +230,7 @@
         <div class="menu-category">
             <h3>Artisanal Sourdough Loaves</h3>
             <div class="item-row">
+                <div class="item-graphic bg-original">🍞<br>Original</div>
                 <div class="item-details">
                     <h4>Original Sourdough Loaf</h4>
                     <p>Classic crispy crust with a soft, tangy open crumb.</p>
@@ -209,6 +241,7 @@
                 </div>
             </div>
             <div class="item-row">
+                <div class="item-graphic bg-jalapeno">🌶️<br>Jalapeno</div>
                 <div class="item-details">
                     <h4>Jalapeño Cheddar Sourdough Loaf</h4>
                     <p>Packed with real cheddar cheese and fresh jalapeños.</p>
@@ -224,6 +257,7 @@
         <div class="menu-category">
             <h3>Sourdough Discard Pancake Mix</h3>
             <div class="item-row">
+                <div class="item-graphic bg-pancake">🥞<br>Pancakes</div>
                 <div class="item-details">
                     <h4>Sourdough Discard Pancake Mix</h4>
                     <p>Makes about 9 fluffy, delicious pancakes.</p>
@@ -239,6 +273,7 @@
         <div class="menu-category">
             <h3>Sourdough Muffins</h3>
             <div class="item-row">
+                <div class="item-graphic bg-muffin">🫐<br>Blueberry</div>
                 <div class="item-details">
                     <h4>Lemon Blueberry Muffins (6-pack)</h4>
                     <p>Bright lemon zest loaded with juicy blueberries.</p>
@@ -249,6 +284,7 @@
                 </div>
             </div>
             <div class="item-row">
+                <div class="item-graphic bg-muffin">🧁<br>Coffee Cake</div>
                 <div class="item-details">
                     <h4>Coffee Cake Muffins (6-pack)</h4>
                     <p>Sweet cinnamon crumb topping.</p>
@@ -264,6 +300,7 @@
         <div class="menu-category">
             <h3>Cinnamon Rolls</h3>
             <div class="item-row">
+                <div class="item-graphic bg-cinnamon">🍥<br>Classic</div>
                 <div class="item-details">
                     <h4>Classic Cinnamon Rolls (6-pack)</h4>
                     <p>Giant, gooey, and completely tasty.</p>
@@ -274,6 +311,7 @@
                 </div>
             </div>
             <div class="item-row">
+                <div class="item-graphic bg-pumpkin">🎃<br>Pumpkin</div>
                 <div class="item-details">
                     <h4>Pumpkin Cinnamon Rolls (6-pack)</h4>
                     <p>Seasonal spiced pumpkin flavor goodness.</p>
@@ -289,6 +327,7 @@
         <div class="menu-category">
             <h3>Sourdough Cookies</h3>
             <div class="item-row">
+                <div class="item-graphic bg-cookie">🍪<br>Choc Chip</div>
                 <div class="item-details">
                     <h4>Sourdough Chocolate Chip Cookies (12-pack)</h4>
                     <p>Rich, chewy chocolate chip perfection.</p>
@@ -299,6 +338,7 @@
                 </div>
             </div>
             <div class="item-row">
+                <div class="item-graphic bg-cookie">🥜<br>Reese's</div>
                 <div class="item-details">
                     <h4>Sourdough Reese's Pieces Cookies (12-pack)</h4>
                     <p>Peanut butter crunch in every bite.</p>
@@ -314,6 +354,7 @@
         <div class="menu-category">
             <h3>Pup-Approved Dog Treats</h3>
             <div class="item-row">
+                <div class="item-graphic bg-dog">🦴<br>Dog Treats</div>
                 <div class="item-details">
                     <h4>Sourdough Dog Treats (1-lb bag)</h4>
                     <p>Healthy, wholesome treats for your furry best friend.</p>
@@ -370,6 +411,11 @@
 
             let total = 0;
             let emailBody = "Hello Simple Sourdough U,%0D%0A%0D%0AI would like to place an order for:%0D%0A";
+
+            cart.push = function(item) {
+                Array.prototype.push.call(this, item);
+                updateCartUI();
+            };
 
             cart.forEach((item, index) => {
                 total += item.price;
