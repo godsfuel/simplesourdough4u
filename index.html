@@ -37,7 +37,7 @@
             text-align: left;
         }
         .logo-img {
-            max-height: 240px;
+            max-height: 240px; /* Doubled size as requested */
             width: auto;
             border-radius: 8px;
         }
@@ -194,6 +194,30 @@
             align-items: center;
             padding: 0.5rem 0;
             border-bottom: 1px solid #edf2ec;
+        }
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .qty-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.1rem 0.5rem;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        .qty-btn:hover {
+            background-color: var(--primary);
+        }
+        .remove-btn {
+            background: #c0392b;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+            margin-left: 5px;
         }
         .cart-total {
             font-size: 1.2rem;
@@ -435,7 +459,20 @@
         let cart = [];
 
         function addToCart(name, price) {
-            cart.push({ name, price });
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            updateCartUI();
+        }
+
+        function changeQuantity(index, amount) {
+            cart[index].quantity += amount;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
             updateCartUI();
         }
 
@@ -462,11 +499,21 @@
             let emailBody = "Hello Simple Sourdough 4 U,%0D%0A%0D%0AI would like to place an order for:%0D%0A";
 
             cart.forEach((item, index) => {
-                total += item.price;
-                emailBody += `- ${item.name} ($${item.price.toFixed(2)})%0D%0A`;
+                let itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                emailBody += `- ${item.name} (Qty: ${item.quantity}) - $${itemTotal.toFixed(2)}%0D%0A`;
                 
                 const li = document.createElement('li');
-                li.innerHTML = `${item.name} <span>$${item.price.toFixed(2)} <button onclick="removeFromCart(${index})" style="background:#c0392b; padding:0.2rem 0.5rem; font-size:0.8rem; margin-left:10px;">Remove</button></span>`;
+                li.innerHTML = `
+                    <span>${item.name} ($${item.price.toFixed(2)} each)</span>
+                    <div class="cart-item-controls">
+                        <button class="qty-btn" onclick="changeQuantity(${index}, -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="qty-btn" onclick="changeQuantity(${index}, 1)">+</button>
+                        <span>$${itemTotal.toFixed(2)}</span>
+                        <button class="qty-btn remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                    </div>
+                `;
                 cartList.appendChild(li);
             });
 
