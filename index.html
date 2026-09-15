@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Sourdough 4 You | Artisanal Homemade Sourdough Goods</title>
+    <style>
+        :root {
+            --primary: #8C5830;
+            --secondary: #D9A066;
+            --dark: #2C221E;
+            --light: #FDFBF7;
+            --accent: #C86D3B;
+            --card-bg: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(rgba(44, 34, 30, 0.75), rgba(44, 34, 30, 0.75)), url('https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary);
+        }
+
+        nav {
+            background-color: var(--dark);
+            color: white;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav .logo {
+            font-weight: bold;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            color: var(--primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border: 1px solid #EFECE6;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            height: 200px;
+            background-color: #E2D9CE;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .product-info p {
+            color: #665C58;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .about-section {
+            background-color: #F3EFEA;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #554A44;
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .contact-box {
+            background: var(--card-bg);
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #EFECE6;
+        }
+
+        .contact-box p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: #A39B95;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Simple Sourdough 4 You</div>
+        <ul>
+            <li><a href="#products">Menu</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Crafted with Patience & Passion</h1>
+        <p>Handmade artisanal sourdough breads, fluffy pancakes, morning muffins, and gourmet treats baked fresh from scratch.</p>
+        <a href="#contact" class="btn">Place an Order</a>
+    </header>
+
+    <div class="container" id="products">
+        <h2 class="section-title">Our Homemade Menu</h2>
+        <div class="products-grid">
+            
+            <!-- Bread -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="product-info">
+                    <h3>Artisanal Sourdough Loaves</h3>
+                    <p>Traditional crusty country boules with a perfect open crumb and rich, tangy flavor developed through long fermentation.</p>
+                </div>
+            </div>
+
+            <!-- Pancakes -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="product-info">
+                    <h3>Sourdough Discard Pancakes</h3>
+                    <p>Light, fluffy, and perfectly golden pancakes made using active sourdough starter for an incredible depth of flavor.</p>
+                </div>
+            </div>
+
+            <!-- Muffins -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="product-info">
+                    <h3>Gourmet Sourdough Muffins</h3>
+                    <p>Moist, tender, rotation-flavored breakfast muffins featuring wholesome ingredients and classic artisan balance.</p>
+                </div>
+            </div>
+
+            <!-- Dog Treats -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="product-info">
+                    <h3>Pup-Approved Dog Treats</h3>
+                    <p>Crunchy, wholesome baked treats crafted with safe, natural ingredients your furry best friend will love.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <section class="about-section" id="about">
+        <div class="about-content">
+            <h2 class="section-title" style="margin-bottom: 20px;">The Simple Sourdough Story</h2>
+            <p>Welcome! Everything baked here starts with a healthy, bubbly starter, time-honored techniques, and a love for authentic homemade baking. No artificial preservatives or shortcuts—just wholesome, honest ingredients created to bring comfort straight to your table.</p>
+            <p>From our signature daily loaves to specialty treats and goodies, we love sharing the magic of wild fermentation with our community.</p>
+        </div>
+    </section>
+
+    <div class="container contact-section" id="contact">
+        <h2 class="section-title">Get in Touch & Order</h2>
+        <div class="contact-box">
+            <p>Interested in placing an order or checking our current weekly bake schedule? Drop us a message or give us a call!</p>
+            <p><strong>Email:</strong> jamiesourdough4u@gmail.com</p>
+            <a href="mailto:jamiesourdough4u@gmail.com" class="btn">Send an Email</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Simple Sourdough 4 You. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
