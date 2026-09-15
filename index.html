@@ -96,30 +96,16 @@
         .item-row:last-child {
             border-bottom: none;
         }
-        .item-graphic {
-            width: 85px;
-            height: 85px;
+        /* Real photo thumbnail styling (~3 inches scaled to web dimensions) */
+        .item-photo {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             flex-shrink: 0;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.05);
-            font-weight: bold;
-            font-size: 0.8rem;
-            text-align: center;
-            color: #fff;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
         }
-        .bg-original { background: linear-gradient(135deg, #A0522D, #CD853F); }
-        .bg-jalapeno { background: linear-gradient(135deg, #2E8B57, #3CB371); }
-        .bg-pancake { background: linear-gradient(135deg, #DAA520, #F4A460); }
-        .bg-muffin { background: linear-gradient(135deg, #D2691E, #E9967A); }
-        .bg-cinnamon { background: linear-gradient(135deg, #8B4513, #D2691E); }
-        .bg-pumpkin { background: linear-gradient(135deg, #D27D2D, #E59866); }
-        .bg-cookie { background: linear-gradient(135deg, #654321, #8B5A2B); }
-        .bg-dog { background: linear-gradient(135deg, #CD853F, #DEB887); }
-
         .item-details {
             flex-grow: 1;
         }
@@ -230,7 +216,7 @@
         <div class="menu-category">
             <h3>Artisanal Sourdough Loaves</h3>
             <div class="item-row">
-                <div class="item-graphic bg-original">🍞<br>Original</div>
+                <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=200&auto=format&fit=crop&q=80" alt="Original Sourdough Loaf" class="item-photo">
                 <div class="item-details">
                     <h4>Original Sourdough Loaf</h4>
                     <p>Classic crispy crust with a soft, tangy open crumb.</p>
@@ -241,7 +227,7 @@
                 </div>
             </div>
             <div class="item-row">
-                <div class="item-graphic bg-jalapeno">🌶️<br>Jalapeno</div>
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&auto=format&fit=crop&q=80" alt="Jalapeño Cheddar Sourdough Loaf" class="item-photo">
                 <div class="item-details">
                     <h4>Jalapeño Cheddar Sourdough Loaf</h4>
                     <p>Packed with real cheddar cheese and fresh jalapeños.</p>
@@ -257,7 +243,7 @@
         <div class="menu-category">
             <h3>Sourdough Discard Pancake Mix</h3>
             <div class="item-row">
-                <div class="item-graphic bg-pancake">🥞<br>Pancakes</div>
+                <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=200&auto=format&fit=crop&q=80" alt="Sourdough Discard Pancake Mix" class="item-photo">
                 <div class="item-details">
                     <h4>Sourdough Discard Pancake Mix</h4>
                     <p>Makes about 9 fluffy, delicious pancakes.</p>
@@ -273,7 +259,7 @@
         <div class="menu-category">
             <h3>Sourdough Muffins</h3>
             <div class="item-row">
-                <div class="item-graphic bg-muffin">🫐<br>Blueberry</div>
+                <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?w=200&auto=format&fit=crop&q=80" alt="Lemon Blueberry Muffins" class="item-photo">
                 <div class="item-details">
                     <h4>Lemon Blueberry Muffins (6-pack)</h4>
                     <p>Bright lemon zest loaded with juicy blueberries.</p>
@@ -284,7 +270,7 @@
                 </div>
             </div>
             <div class="item-row">
-                <div class="item-graphic bg-muffin">🧁<br>Coffee Cake</div>
+                <img src="https://images.unsplash.com/photo-1607958996333-41aef7caefcc?w=200&auto=format&fit=crop&q=80" alt="Coffee Cake Muffins" class="item-photo">
                 <div class="item-details">
                     <h4>Coffee Cake Muffins (6-pack)</h4>
                     <p>Sweet cinnamon crumb topping.</p>
@@ -300,7 +286,7 @@
         <div class="menu-category">
             <h3>Cinnamon Rolls</h3>
             <div class="item-row">
-                <div class="item-graphic bg-cinnamon">🍥<br>Classic</div>
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&auto=format&fit=crop&q=80" alt="Classic Cinnamon Rolls" class="item-photo">
                 <div class="item-details">
                     <h4>Classic Cinnamon Rolls (6-pack)</h4>
                     <p>Giant, gooey, and completely tasty.</p>
@@ -311,7 +297,7 @@
                 </div>
             </div>
             <div class="item-row">
-                <div class="item-graphic bg-pumpkin">🎃<br>Pumpkin</div>
+                <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=200&auto=format&fit=crop&q=80" alt="Pumpkin Cinnamon Rolls" class="item-photo">
                 <div class="item-details">
                     <h4>Pumpkin Cinnamon Rolls (6-pack)</h4>
                     <p>Seasonal spiced pumpkin flavor goodness.</p>
@@ -327,7 +313,7 @@
         <div class="menu-category">
             <h3>Sourdough Cookies</h3>
             <div class="item-row">
-                <div class="item-graphic bg-cookie">🍪<br>Choc Chip</div>
+                <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=200&auto=format&fit=crop&q=80" alt="Sourdough Chocolate Chip Cookies" class="item-photo">
                 <div class="item-details">
                     <h4>Sourdough Chocolate Chip Cookies (12-pack)</h4>
                     <p>Rich, chewy chocolate chip perfection.</p>
@@ -338,7 +324,7 @@
                 </div>
             </div>
             <div class="item-row">
-                <div class="item-graphic bg-cookie">🥜<br>Reese's</div>
+                <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=200&auto=format&fit=crop&q=80" alt="Sourdough Reese's Pieces Cookies" class="item-photo">
                 <div class="item-details">
                     <h4>Sourdough Reese's Pieces Cookies (12-pack)</h4>
                     <p>Peanut butter crunch in every bite.</p>
@@ -354,7 +340,7 @@
         <div class="menu-category">
             <h3>Pup-Approved Dog Treats</h3>
             <div class="item-row">
-                <div class="item-graphic bg-dog">🦴<br>Dog Treats</div>
+                <img src="https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?w=200&auto=format&fit=crop&q=80" alt="Sourdough Dog Treats" class="item-photo">
                 <div class="item-details">
                     <h4>Sourdough Dog Treats (1-lb bag)</h4>
                     <p>Healthy, wholesome treats for your furry best friend.</p>
