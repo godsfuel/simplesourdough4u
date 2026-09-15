@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Sourdough U</title>
+    <title>Simple Sourdough 4U</title>
     <style>
         :root {
-            --primary: #8B5A2B;
-            --secondary: #D4A373;
-            --background: #FDFBF7;
-            --text: #2C2C2C;
+            --primary: #4A6B5B;      /* Deep Sage Green */
+            --secondary: #8A9A86;    /* Soft Eucalyptus Sage */
+            --background: #F4F6F0;   /* Warm Farmhouse Cream/Linen */
+            --text: #2C352D;         /* Deep Muted Charcoal/Green-Grey */
             --card-bg: #FFFFFF;
-            --accent: #E9D8A6;
+            --accent: #D0D9CD;       /* Light Sage Tint */
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -25,18 +25,24 @@
             background-color: var(--primary);
             color: white;
             text-align: center;
-            padding: 3.5rem 1rem;
+            padding: 4rem 1rem;
+            border-bottom: 4px solid var(--secondary);
         }
         header h1 {
-            font-size: 3.5em;
+            /* Farmhouse script style font. (Fallback to Comic Sans if desired by changing to 'Comic Sans MS', cursive) */
+            font-family: 'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif;
+            font-size: 4em;
             margin: 0;
-            font-weight: 800;
-            letter-spacing: -1px;
+            font-weight: normal;
+            letter-spacing: 1px;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.15);
         }
         header p {
             font-size: 1.3rem;
-            margin-top: 0.5rem;
+            margin-top: 0.75rem;
             color: var(--accent);
+            font-weight: 300;
+            letter-spacing: 0.5px;
         }
         nav {
             background-color: var(--secondary);
@@ -96,11 +102,11 @@
             background: var(--card-bg);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border: 1px solid #eae0d0;
+            border: 1px solid #d8e0d5;
         }
         .item-photo {
             width: 100%;
@@ -121,14 +127,14 @@
         }
         .item-details p {
             margin: 0 0 1.5rem 0;
-            color: #666;
+            color: #556056;
             font-size: 0.95rem;
         }
         .item-footer {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-top: 1px solid #f0f0f0;
+            border-top: 1px solid #edf2ec;
             padding-top: 1rem;
             margin-top: auto;
         }
@@ -149,7 +155,7 @@
             transition: background 0.2s;
         }
         button:hover {
-            background-color: #6f4520;
+            background-color: #385244;
         }
         #cart-section {
             background: #fff;
@@ -157,6 +163,7 @@
             border-radius: 8px;
             padding: 1.5rem;
             margin-top: 3rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
         }
         #cart-items {
             list-style: none;
@@ -168,18 +175,19 @@
             justify-content: space-between;
             align-items: center;
             padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #edf2ec;
         }
         .cart-total {
             font-size: 1.2rem;
             font-weight: bold;
             text-align: right;
             margin-bottom: 1rem;
+            color: var(--primary);
         }
         .checkout-btn {
             display: block;
             width: 100%;
-            background-color: #2b8b3a;
+            background-color: #4A6B5B;
             color: white;
             text-align: center;
             padding: 0.85rem;
@@ -189,7 +197,7 @@
             font-weight: bold;
         }
         .checkout-btn:hover {
-            background-color: #23702f;
+            background-color: #385244;
         }
         footer {
             text-align: center;
@@ -207,7 +215,7 @@
 <body>
 
     <header>
-        <h1>Simple Sourdough U</h1>
+        <h1>Simple Sourdough 4U</h1>
         <p>Artisan Breads, Treats & Goodness Made from Scratch</p>
     </header>
 
@@ -225,8 +233,7 @@
             <h3>Artisanal Breads & Mixes</h3>
             <div class="product-grid">
                 <div class="product-card">
-                    <img src="Bread_Sourdough_1A.jpg" 
-							alt="Original Sourdough Loaf" class="item-photo">
+                    <img src="Bread_Sourdough_1A.jpg" alt="Original Sourdough Loaf" class="item-photo">
                     <div class="item-content">
                         <div class="item-details">
                             <h4>Original Sourdough Loaf</h4>
@@ -239,8 +246,7 @@
                     </div>
                 </div>
                 <div class="product-card">
-                    <img src="Bread_Sourdough_Jalapeño.jpg" 
-							alt="Jalapeño Cheddar Sourdough Loaf" class="item-photo">
+                    <img src="Bread_Sourdough_Jalapeño.jpg" alt="Jalapeño Cheddar Sourdough Loaf" class="item-photo">
                     <div class="item-content">
                         <div class="item-details">
                             <h4>Jalapeño Cheddar Sourdough Loaf</h4>
@@ -273,8 +279,7 @@
             <h3>Muffins & Cinnamon Rolls</h3>
             <div class="product-grid">
                 <div class="product-card">
-                    <img src="Lemon_Blueberry_Muffins.jpg" 
-					alt="Lemon Blueberry Muffins" class="item-photo">
+                    <img src="Lemon_Blueberry_Muffins.jpg" alt="Lemon Blueberry Muffins" class="item-photo">
                     <div class="item-content">
                         <div class="item-details">
                             <h4>Lemon Blueberry Muffins (6-pack)</h4>
@@ -287,8 +292,7 @@
                     </div>
                 </div>
                 <div class="product-card">
-                    <img src="Coffee_Cake_Muffins.jpg" 
-						 alt="Coffee Cake Muffins" class="item-photo">
+                    <img src="Coffee_Cake_Muffins.jpg" alt="Coffee Cake Muffins" class="item-photo">
                     <div class="item-content">
                         <div class="item-details">
                             <h4>Coffee Cake Muffins (6-pack)</h4>
@@ -301,8 +305,7 @@
                     </div>
                 </div>
                 <div class="product-card">
-                    <img src="Cinnamon_Rolls_2.jpg" 
-						 alt="Classic Cinnamon Rolls" class="item-photo">
+                    <img src="Cinnamon_Rolls_2.jpg" alt="Classic Cinnamon Rolls" class="item-photo">
                     <div class="item-content">
                         <div class="item-details">
                             <h4>Classic Cinnamon Rolls (6-pack)</h4>
@@ -322,8 +325,7 @@
             <h3>Cookies & Treats</h3>
             <div class="product-grid">
                 <div class="product-card">
-                    <img src="Pumpkin_Rolls.jpg" 
-							alt="Pumpkin Cinnamon Rolls" class="item-photo">
+                    <img src="Pumpkin_Rolls.jpg" alt="Pumpkin Cinnamon Rolls" class="item-photo">
                     <div class="item-content">
                         <div class="item-details">
                             <h4>Pumpkin Cinnamon Rolls (6-pack)</h4>
@@ -336,8 +338,7 @@
                     </div>
                 </div>
                 <div class="product-card">
-                    <img src="Chocolate_Chip_Cookies.jpg" 
-					alt="Sourdough Chocolate Chip Cookies" class="item-photo">
+                    <img src="Chocolate_Chip_Cookies.jpg" alt="Sourdough Chocolate Chip Cookies" class="item-photo">
                     <div class="item-content">
                         <div class="item-details">
                             <h4>Sourdough Chocolate Chip Cookies (12-pack)</h4>
@@ -377,7 +378,7 @@
     </div>
 
     <footer id="contact">
-        <p><strong>Simple Sourdough U</strong></p>
+        <p><strong>Simple Sourdough 4U</strong></p>
         <p>Questions or custom orders? Email us at: <a href="mailto:simplesourdough4you@yahoo.com">simplesourdough4you@yahoo.com</a></p>
     </footer>
 
@@ -409,7 +410,7 @@
             }
 
             let total = 0;
-            let emailBody = "Hello Simple Sourdough U,%0D%0A%0D%0AI would like to place an order for:%0D%0A";
+            let emailBody = "Hello Simple Sourdough 4U,%0D%0A%0D%0AI would like to place an order for:%0D%0A";
 
             cart.forEach((item, index) => {
                 total += item.price;
