@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Sourdough U</title>
+    <style>
+        :root {
+            --primary: #8B5A2B;
+            --secondary: #D4A373;
+            --background: #FDFBF7;
+            --text: #2C2C2C;
+            --card-bg: #FFFFFF;
+            --accent: #E9D8A6;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            color: var(--accent);
+        }
+        nav {
+            background-color: var(--secondary);
+            display: flex;
+            justify-content: center;
+            padding: 0.75rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .section-title {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+        }
+        .menu-category {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .menu-category h3 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px dashed #f0f0f0;
+        }
+        .item-row:last-child {
+            border-bottom: none;
+        }
+        .item-details h4 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.1rem;
+        }
+        .item-details p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .item-action {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .price {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #6f4520;
+        }
+        #cart-section {
+            background: #fff;
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+        #cart-items {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1rem 0;
+        }
+        #cart-items li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: right;
+            margin-bottom: 1rem;
+        }
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            background-color: #2b8b3a;
+            color: white;
+            text-align: center;
+            padding: 0.75rem;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .checkout-btn:hover {
+            background-color: #23702f;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--primary);
+            color: white;
+            margin-top: 4rem;
+        }
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Simple Sourdough U</h1>
+        <p>Artisan Breads, Treats & Goodness Made from Scratch</p>
+    </header>
+
+    <nav>
+        <a href="#menu">Menu</a>
+        <a href="#cart">Cart</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="container">
+        <h2 class="section-title" id="menu">Our Fresh Menu</h2>
+
+        <!-- Loaves -->
+        <div class="menu-category">
+            <h3>Artisanal Sourdough Loaves</h3>
+            <div class="item-row">
+                <div class="item-details">
+                    <h4>Original Sourdough Loaf</h4>
+                    <p>Classic crispy crust with a soft, tangy open crumb.</p>
+                </div>
+                <div class="item-action">
+                    <span class="price">$10.00</span>
+                    <button onclick="addToCart('Original Sourdough Loaf', 10.00)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="item-row">
+                <div class="item-details">
+                    <h4>Jalapeño Cheddar Sourdough Loaf</h4>
+                    <p>Packed with real cheddar cheese and fresh jalapeños.</p>
+                </div>
+                <div class="item-action">
+                    <span class="price">$15.00</span>
+                    <button onclick="addToCart('Jalapeño Cheddar Sourdough Loaf', 15.00)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pancake Mix -->
+        <div class="menu-category">
+            <h3>Sourdough Discard Pancake Mix</h3>
+            <div class="item-row">
+                <div class="item-details">
+                    <h4>Sourdough Discard Pancake Mix</h4>
+                    <p>Makes about 9 fluffy, delicious pancakes.</p>
+                </div>
+                <div class="item-action">
+                    <span class="price">$6.00</span>
+                    <button onclick="addToCart('Sourdough Discard Pancake Mix', 6.00)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Muffins -->
+        <div class="menu-category">
+            <h3>Sourdough Muffins</h3>
+            <div class="item-row">
+                <div class="item-details">
+                    <h4>Lemon Blueberry Muffins (6-pack)</h4>
+                    <p>Bright lemon zest loaded with juicy blueberries.</p>
+                </div>
+                <div class="item-action">
+                    <span class="price">$10.00</span>
+                    <button onclick="addToCart('Lemon Blueberry Muffins (6-pack)', 10.00)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="item-row">
+                <div class="item-details">
+                    <h4>Coffee Cake Muffins (6-pack)</h4>
+                    <p>Sweet cinnamon crumb topping.</p>
+                </div>
+                <div class="item-action">
+                    <span class="price">$10.00</span>
+                    <button onclick="addToCart('Coffee Cake Muffins (6-pack)', 10.00)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cinnamon Rolls -->
+        <div class="menu-category">
+            <h3>Cinnamon Rolls</h3>
+            <div class="item-row">
+                <div class="item-details">
+                    <h4>Classic Cinnamon Rolls (6-pack)</h4>
+                    <p>Giant, gooey, and completely tasty.</p>
+                </div>
+                <div class="item-action">
+                    <span class="price">$20.00</span>
+                    <button onclick="addToCart('Classic Cinnamon Rolls (6-pack)', 20.00)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="item-row">
+                <div class="item-details">
+                    <h4>Pumpkin Cinnamon Rolls (6-pack)</h4>
+                    <p>Seasonal spiced pumpkin flavor goodness.</p>
+                </div>
+                <div class="item-action">
+                    <span class="price">$20.00</span>
+                    <button onclick="addToCart('Pumpkin Cinnamon Rolls (6-pack)', 20.00)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cookies -->
+        <div class="menu-category">
+            <h3>Sourdough Cookies</h3>
+            <div class="item-row">
+                <div class="item-details">
+                    <h4>Sourdough Chocolate Chip Cookies (12-pack)</h4>
+                    <p>Rich, chewy chocolate chip perfection.</p>
+                </div>
+                <div class="item-action">
+                    <span class="price">$15.00</span>
+                    <button onclick="addToCart('Sourdough Chocolate Chip Cookies (12-pack)', 15.00)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="item-row">
+                <div class="item-details">
+                    <h4>Sourdough Reese's Pieces Cookies (12-pack)</h4>
+                    <p>Peanut butter crunch in every bite.</p>
+                </div>
+                <div class="item-action">
+                    <span class="price">$15.00</span>
+                    <button onclick="addToCart('Sourdough Reese\'s Pieces Cookies (12-pack)', 15.00)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dog Treats -->
+        <div class="menu-category">
+            <h3>Pup-Approved Dog Treats</h3>
+            <div class="item-row">
+                <div class="item-details">
+                    <h4>Sourdough Dog Treats (1-lb bag)</h4>
+                    <p>Healthy, wholesome treats for your furry best friend.</p>
+                </div>
+                <div class="item-action">
+                    <span class="price">$10.00</span>
+                    <button onclick="addToCart('Sourdough Dog Treats (1-lb bag)', 10.00)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Section -->
+        <div id="cart-section">
+            <h3 style="margin-top:0; color:var(--primary);" id="cart">Your Order Cart</h3>
+            <ul id="cart-items">
+                <li>Your cart is currently empty.</li>
+            </ul>
+            <div class="cart-total" id="cart-total">Total: $0.00</div>
+            <a href="mailto:simplesourdough4you@yahoo.com?subject=New%20Sourdough%20Order" class="checkout-btn" id="checkout-link">Send Order via Email</a>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <p><strong>Simple Sourdough U</strong></p>
+        <p>Questions or custom orders? Email us at: <a href="mailto:simplesourdough4you@yahoo.com">simplesourdough4you@yahoo.com</a></p>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartList = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutLink = document.getElementById('checkout-link');
+
+            cartList.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartList.innerHTML = '<li>Your cart is currently empty.</li>';
+                cartTotal.innerText = 'Total: $0.00';
+                checkoutLink.href = 'mailto:simplesourdough4you@yahoo.com?subject=New%20Sourdough%20Order';
+                return;
+            }
+
+            let total = 0;
+            let emailBody = "Hello Simple Sourdough U,%0D%0A%0D%0AI would like to place an order for:%0D%0A";
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                emailBody += `- ${item.name} ($${item.price.toFixed(2)})%0D%0A`;
+                
+                const li = document.createElement('li');
+                li.innerHTML = `${item.name} <span>$${item.price.toFixed(2)} <button onclick="removeFromCart(${index})" style="background:#c0392b; padding:0.2rem 0.5rem; font-size:0.8rem; margin-left:10px;">Remove</button></span>`;
+                cartList.appendChild(li);
+            });
+
+            emailBody += `%0D%0ATotal: $${total.toFixed(2)}%0D%0A%0D%0APlease let me know pickup/payment details!`;
+            
+            cartTotal.innerText = `Total: $${total.toFixed(2)}`;
+            checkoutLink.href = `mailto:simplesourdough4you@yahoo.com?subject=New%20Sourdough%20Order&body=${emailBody}`;
+        }
+    </script>
+</body>
+</html>
