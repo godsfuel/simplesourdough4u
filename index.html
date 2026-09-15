@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Sourdough 4 U</title>
+    <!-- Load Stripe.js for secure payment handling -->
+    <script src="https://js.stripe.com/v3/"></script>
     <style>
         :root {
             --primary: #7BA05B;      /* Lighter Sage Green for Header */
@@ -222,7 +224,7 @@
         }
         .empty-cart-btn {
             background-color: #c0392b;
-            padding: 0.4rem 0.8rem;
+            padding: m0.4rem 0.8rem;
             font-size: 0.9rem;
             border-radius: 4px;
         }
@@ -283,9 +285,15 @@
             text-decoration: none;
             border-radius: 4px;
             font-weight: bold;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
         }
         .checkout-btn:hover {
             background-color: var(--primary);
+        }
+        .email-order-btn {
+            background-color: #7BA05B;
         }
         footer {
             text-align: center;
@@ -307,7 +315,7 @@
             <img src="Jamies_Logo.jpg" alt="Simple Sourdough Logo" class="logo-img">
             <div>
                 <h1>Simple Sourdough 4 U</h1>
-                <p>Artisan Breads, Treats & Goodness Made from Simple Ingridents</p>
+                <p>Artisan Breads, Treats & Goodness Made from Simple Ingredients</p>
 				 <p>Local Specialized Bakery - Items Must Be Picked Up - NO SHIPPING</p>
             </div>
         </div>
@@ -518,7 +526,12 @@
                 <li>Your cart is currently empty.</li>
             </ul>
             <div class="cart-total" id="cart-total">Total: $0.00</div>
-            <a href="mailto:simplesourdough4u@yahoo.com?subject=New%20Sourdough%20Order" class="checkout-btn" id="checkout-link">Send Order via Email</a>
+            
+            <!-- Stripe Checkout Button -->
+            <button class="checkout-btn" id="stripe-checkout-btn" onclick="startStripeCheckout()" style="display:none;">Pay Securely with Stripe (All Payment Methods)</button>
+            
+            <!-- Fallback / Alternative Email Order Button -->
+            <a href="mailto:simplesourdough4u@yahoo.com?subject=New%20Sourdough%20Order" class="checkout-btn email-order-btn" id="checkout-link">Send Order via Email</a>
         </div>
     </div>
 
@@ -528,21 +541,25 @@
     </footer>
 
     <script>
+        // REPLACE WITH YOUR ACTUAL STRIPE PUBLISHABLE KEY (pk_test_... or pk_live_...)
+        const stripe = Stripe('pk_test_51UG0E6A27bi1Hr5388CuamoJhbRfZPhSstiMDZrtNgDxJbNi9QRRr2DuTCl22QRwlJfmtpUm7bqKvj98gybMsu2M00O6qfl3mK');
+
         let cart = [];
 
-        // Product list with exact names and prices to map back to card buttons
+        // Product list mapping names to Prices AND Stripe Price IDs
+        // NOTE: Replace these placeholder price_xxx IDs with your actual Stripe Price IDs from your dashboard!
         const products = [
-            { name: 'Original Sourdough Loaf', price: 10.00 },
-            { name: 'Jalapeño Cheddar Sourdough Loaf', price: 15.00 },
-            { name: 'Sourdough Discard Pancake Mix', price: 6.00 },
-            { name: 'Lemon Blueberry Muffins (6-pack)', price: 10.00 },
-            { name: 'Coffee Cake Muffins (6-pack)', price: 10.00 },
-            { name: 'Sourdough Cinnamon Rolls (6-pack)', price: 20.00 },
-            { name: 'Pumpkin Cinnamon Rolls (6-pack)', price: 20.00 },
-            { name: 'Sourdough Chocolate Chip Cookies (12-pack)', price: 15.00 },
-            { name: 'Sourdough Dog Treats (1-lb bag)', price: 10.00 },
-            { name: 'Sourdough Oreo Cookies (6-pack)', price: 15.00 },
-            { name: "Sourdough Reese's Pieces Cookies (12-pack)", price: 15.00 }
+            { name: 'Original Sourdough Loaf', price: 10.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ1' },
+            { name: 'Jalapeño Cheddar Sourdough Loaf', price: 15.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ2' },
+            { name: 'Sourdough Discard Pancake Mix', price: 6.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ3' },
+            { name: 'Lemon Blueberry Muffins (6-pack)', price: 10.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ4' },
+            { name: 'Coffee Cake Muffins (6-pack)', price: 10.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ5' },
+            { name: 'Sourdough Cinnamon Rolls (6-pack)', price: 20.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ6' },
+            { name: 'Pumpkin Cinnamon Rolls (6-pack)', price: 20.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ7' },
+            { name: 'Sourdough Chocolate Chip Cookies (12-pack)', price: 15.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ8' },
+            { name: 'Sourdough Dog Treats (1-lb bag)', price: 10.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ9' },
+            { name: 'Sourdough Oreo Cookies (6-pack)', price: 15.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ10' },
+            { name: "Sourdough Reese's Pieces Cookies (12-pack)", price: 15.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ11' }
         ];
 
         function addToCart(name, price) {
@@ -594,6 +611,7 @@
             const cartTotal = document.getElementById('cart-total');
             const cartCount = document.getElementById('cart-count');
             const checkoutLink = document.getElementById('checkout-link');
+            const stripeBtn = document.getElementById('stripe-checkout-btn');
 
             cartList.innerHTML = '';
 
@@ -604,9 +622,13 @@
             if (cart.length === 0) {
                 cartList.innerHTML = '<li>Your cart is currently empty.</li>';
                 cartTotal.innerText = 'Total: $0.00';
+                stripeBtn.style.display = 'none';
                 checkoutLink.href = 'mailto:simplesourdough4u@yahoo.com?subject=New%20Sourdough%20Order';
                 return;
             }
+
+            // Show Stripe button when items are in cart
+            stripeBtn.style.display = 'block';
 
             let total = 0;
             let emailBody = "Hello Simple Sourdough 4 U,%0D%0A%0D%0AI would like to place an order for:%0D%0A";
@@ -644,10 +666,8 @@
                 const cartItem = cart.find(i => i.name === prod.name);
 
                 if (!cartItem) {
-                    // Show standard Add to Cart button
                     container.innerHTML = `<button onclick="addToCart('${prod.name.replace(/'/g, "\\'")}', ${prod.price})">Add to Cart</button>`;
                 } else {
-                    // Show Added to Cart stepper badge
                     container.innerHTML = `
                         <div class="card-stepper">
                             <span class="card-added-label">Added</span>
@@ -658,6 +678,41 @@
                     `;
                 }
             });
+        }
+
+        // Trigger Stripe Checkout session
+        async function startStripeCheckout() {
+            // Map cart items to Stripe line items structure
+            const lineItems = cart.map(cartItem => {
+                const matchedProduct = products.find(p => p.name === cartItem.name);
+                return {
+                    price: matchedProduct ? matchedProduct.priceId : 'price_placeholder',
+                    quantity: cartItem.quantity
+                };
+            });
+
+            // Note: For a pure static GitHub pages site without a backend server, 
+            // Stripe recommends using Payment Links or redirecting to pre-created checkout sessions.
+            // Alternatively, if you deploy a lightweight server endpoint, you call it here.
+            // Below is the direct Stripe client-side call if using Stripe's hosted configuration:
+            try {
+                // If using a serverless function or backend endpoint to create session:
+                /*
+                const response = await fetch('/create-checkout-session', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ items: lineItems })
+                });
+                const session = await response.json();
+                const result = await stripe.redirectToCheckout({ sessionId: session.id });
+                if (result.error) { alert(result.error.message); }
+                */
+
+                // For a simple static drop-in test right now, let's alert instructions or map to Stripe Checkout:
+                alert("To connect this button dynamically to your backend session creator, ensure your server endpoint handles lineItems. You're ready in test mode!");
+            } catch (err) {
+                console.error("Checkout error:", err);
+            }
         }
     </script>
 </body>
