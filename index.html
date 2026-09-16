@@ -224,7 +224,7 @@
         }
         .empty-cart-btn {
             background-color: #c0392b;
-            padding: m0.4rem 0.8rem;
+            padding: 0.4rem 0.8rem;
             font-size: 0.9rem;
             border-radius: 4px;
         }
@@ -541,13 +541,10 @@
     </footer>
 
     <script>
-        // REPLACE WITH YOUR ACTUAL STRIPE PUBLISHABLE KEY (pk_test_... or pk_live_...)
         const stripe = Stripe('pk_test_51UG0E6A27bi1Hr5388CuamoJhbRfZPhSstiMDZrtNgDxJbNi9QRRr2DuTCl22QRwlJfmtpUm7bqKvj98gybMsu2M00O6qfl3mK');
 
         let cart = [];
 
-        // Product list mapping names to Prices AND Stripe Price IDs
-        // NOTE: Replace these placeholder price_xxx IDs with your actual Stripe Price IDs from your dashboard!
         const products = [
             { name: 'Original Sourdough Loaf', price: 10.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ1' },
             { name: 'Jalapeño Cheddar Sourdough Loaf', price: 15.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ2' },
@@ -627,7 +624,6 @@
                 return;
             }
 
-            // Show Stripe button when items are in cart
             stripeBtn.style.display = 'block';
 
             let total = 0;
@@ -680,39 +676,8 @@
             });
         }
 
-        // Trigger Stripe Checkout session
         async function startStripeCheckout() {
-            // Map cart items to Stripe line items structure
-            const lineItems = cart.map(cartItem => {
-                const matchedProduct = products.find(p => p.name === cartItem.name);
-                return {
-                    price: matchedProduct ? matchedProduct.priceId : 'price_placeholder',
-                    quantity: cartItem.quantity
-                };
-            });
-
-            // Note: For a pure static GitHub pages site without a backend server, 
-            // Stripe recommends using Payment Links or redirecting to pre-created checkout sessions.
-            // Alternatively, if you deploy a lightweight server endpoint, you call it here.
-            // Below is the direct Stripe client-side call if using Stripe's hosted configuration:
-            try {
-                // If using a serverless function or backend endpoint to create session:
-                /*
-                const response = await fetch('/create-checkout-session', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ items: lineItems })
-                });
-                const session = await response.json();
-                const result = await stripe.redirectToCheckout({ sessionId: session.id });
-                if (result.error) { alert(result.error.message); }
-                */
-
-                // For a simple static drop-in test right now, let's alert instructions or map to Stripe Checkout:
-                alert("To connect this button dynamically to your backend session creator, ensure your server endpoint handles lineItems. You're ready in test mode!");
-            } catch (err) {
-                console.error("Checkout error:", err);
-            }
+            alert("To connect this button dynamically to your backend session creator, ensure your server endpoint handles lineItems. You're ready in test mode!");
         }
     </script>
 </body>
