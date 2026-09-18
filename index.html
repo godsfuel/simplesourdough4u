@@ -696,11 +696,11 @@
                     stripeBtn.disabled = false;
                 }
             } catch (err) {
-                console.error("Network error during checkout initialization:", err);
-                alert("Network error connecting to payment gateway backend. Make sure you are viewing the site via http://localhost:5000");
-                stripeBtn.innerText = "Pay Securely with Stripe (All Payment Methods)";
-                stripeBtn.disabled = false;
-            }
+            console.error("Network error during checkout initialization:", err);
+            alert("Network error connecting to payment gateway backend. Please try again shortly.");
+            stripeBtn.innerText = "Pay Securely with Stripe (All Payment Methods)";
+            stripeBtn.disabled = false;
+			}
         }
     </script>
 </body>
