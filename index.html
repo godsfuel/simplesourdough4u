@@ -107,6 +107,7 @@
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
         }
+        /* Strict 3-Column Grid for Horizontal Layout */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -176,6 +177,7 @@
         button:hover {
             background-color: var(--secondary);
         }
+        /* Product card inline stepper container */
         .card-stepper {
             display: flex;
             align-items: center;
@@ -205,6 +207,7 @@
             color: var(--secondary);
             margin-right: 4px;
         }
+
         #cart-section {
             background: #fff;
             border: 2px solid var(--primary);
@@ -481,7 +484,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="product-card">
+				<div class="product-card">
                     <img src="Oreos2.jpg" alt="Sourdough Oreo Cookies" class="item-photo">
                     <div class="item-content">
                         <div class="item-details">
@@ -525,8 +528,8 @@
             </ul>
             <div class="cart-total" id="cart-total">Total: $0.00</div>
             
-            <!-- Stripe Checkout Button -->
-            <button class="checkout-btn" id="stripe-checkout-btn" onclick="startStripeCheckout()" style="display:none;">Pay Securely with Stripe (All Payment Methods)</button>
+            <!-- Stripe Payment Link Checkout Button -->
+            <a href="https://buy.stripe.com/your_actual_link_here" class="checkout-btn" id="stripe-checkout-btn" target="_blank" style="display:none;">Pay Securely with Stripe (All Payment Methods)</a>
             
             <!-- Fallback / Alternative Email Order Button -->
             <a href="mailto:simplesourdough4u@yahoo.com?subject=New%20Sourdough%20Order" class="checkout-btn email-order-btn" id="checkout-link">Send Order via Email</a>
@@ -670,38 +673,6 @@
                     `;
                 }
             });
-        }
-
-        async function startStripeCheckout() {
-            const stripeBtn = document.getElementById('stripe-checkout-btn');
-            stripeBtn.innerText = "Connecting to Secure Gateway...";
-            stripeBtn.disabled = true;
-
-            try {
-                // Pointing directly to the live domain absolute URL endpoint to avoid routing drops
-                const response = await fetch('https://simplesourdough4u.com/create-checkout-session', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ cart: cart })
-                });
-                
-                const session = await response.json();
-                
-                if (response.ok && session.url) {
-                    window.location.href = session.url;
-                } else {
-                    alert("Checkout Error: " + (session.error || "Unable to establish payment session."));
-                    stripeBtn.innerText = "Pay Securely with Stripe (All Payment Methods)";
-                    stripeBtn.disabled = false;
-                }
-            } catch (err) {
-                console.error("Network error during checkout initialization:", err);
-                alert("Network error connecting to payment gateway backend. Please try again shortly.");
-                stripeBtn.innerText = "Pay Securely with Stripe (All Payment Methods)";
-                stripeBtn.disabled = false;
-            }
         }
     </script>
 </body>
