@@ -542,22 +542,20 @@
     </footer>
 
     <script>
-        const stripe = Stripe('pk_test_51UG0E6A27bi1Hr5388CuamoJhbRfZPhSstiMDZrtNgDxJbNi9QRRr2DuTCl22QRwlJfmtpUm7bqKvj98gybMsu2M00O6qfl3mK');
-
         let cart = [];
 
         const products = [
-            { name: 'Original Sourdough Loaf', price: 10.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ1' },
-            { name: 'Jalapeño Cheddar Sourdough Loaf', price: 15.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ2' },
-            { name: 'Sourdough Discard Pancake Mix', price: 6.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ3' },
-            { name: 'Lemon Blueberry Muffins (6-pack)', price: 10.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ4' },
-            { name: 'Coffee Cake Muffins (6-pack)', price: 10.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ5' },
-            { name: 'Sourdough Cinnamon Rolls (6-pack)', price: 20.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ6' },
-            { name: 'Pumpkin Cinnamon Rolls (6-pack)', price: 20.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ7' },
-            { name: 'Sourdough Chocolate Chip Cookies (12-pack)', price: 15.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ8' },
-            { name: 'Sourdough Dog Treats (1-lb bag)', price: 10.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ9' },
-            { name: 'Sourdough Oreo Cookies (6-pack)', price: 15.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ10' },
-            { name: "Sourdough Reese's Pieces Cookies (12-pack)", price: 15.00, priceId: 'price_1UG0FzA27bi1Hr53XYZ11' }
+            { name: 'Original Sourdough Loaf', price: 10.00 },
+            { name: 'Jalapeño Cheddar Sourdough Loaf', price: 15.00 },
+            { name: 'Sourdough Discard Pancake Mix', price: 6.00 },
+            { name: 'Lemon Blueberry Muffins (6-pack)', price: 10.00 },
+            { name: 'Coffee Cake Muffins (6-pack)', price: 10.00 },
+            { name: 'Sourdough Cinnamon Rolls (6-pack)', price: 20.00 },
+            { name: 'Pumpkin Cinnamon Rolls (6-pack)', price: 20.00 },
+            { name: 'Sourdough Chocolate Chip Cookies (12-pack)', price: 15.00 },
+            { name: 'Sourdough Dog Treats (1-lb bag)', price: 10.00 },
+            { name: 'Sourdough Oreo Cookies (6-pack)', price: 15.00 },
+            { name: "Sourdough Reese's Pieces Cookies (12-pack)", price: 15.00 }
         ];
 
         function addToCart(name, price) {
@@ -677,8 +675,35 @@
             });
         }
 
-     async function startStripeCheckout() {
-            window.location.href = "https://buy.stripe.com/test_9B628qcfkb47gKn5wS3sI00";
+        async function startStripeCheckout() {
+            const stripeBtn = document.getElementById('stripe-checkout-btn');
+            stripeBtn.innerText = "Connecting to Secure Gateway...";
+            stripeBtn.disabled = true;
+
+            try {
+                const response = await fetch('/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ cart: cart })
+                });
+                
+                const session = await response.json();
+                
+                if (session.url) {
+                    window.location.href = session.url;
+                } else {
+                    alert("Checkout Error: " + (session.error || "Unable to establish payment session."));
+                    stripeBtn.innerText = "Pay Securely with Stripe (All Payment Methods)";
+                    stripeBtn.disabled = false;
+                }
+            } catch (err) {
+                console.error("Network error during checkout initialization:", err);
+                alert("Network error connecting to payment gateway backend.");
+                stripeBtn.innerText = "Pay Securely with Stripe (All Payment Methods)";
+                stripeBtn.disabled = false;
+            }
         }
     </script>
 </body>

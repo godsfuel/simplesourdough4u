@@ -1,0 +1,12 @@
+# Ignore local environment configuration files containing secrets
+.env
+
+# Ignore Python compilation and cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore OS-specific junk files
+.DS_Store
+Thumbs.db
