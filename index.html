@@ -678,7 +678,8 @@
             stripeBtn.disabled = true;
 
             try {
-                const response = await fetch('/create-checkout-session', {
+                // Pointing directly to the live domain absolute URL endpoint to avoid routing drops
+                const response = await fetch('https://simplesourdough4u.com/create-checkout-session', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -696,11 +697,11 @@
                     stripeBtn.disabled = false;
                 }
             } catch (err) {
-            console.error("Network error during checkout initialization:", err);
-            alert("Network error connecting to payment gateway backend. Please try again shortly.");
-            stripeBtn.innerText = "Pay Securely with Stripe (All Payment Methods)";
-            stripeBtn.disabled = false;
-			}
+                console.error("Network error during checkout initialization:", err);
+                alert("Network error connecting to payment gateway backend. Please try again shortly.");
+                stripeBtn.innerText = "Pay Securely with Stripe (All Payment Methods)";
+                stripeBtn.disabled = false;
+            }
         }
     </script>
 </body>
