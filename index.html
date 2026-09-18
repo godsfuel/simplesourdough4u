@@ -512,7 +512,6 @@
 
                 feedback.innerHTML = "<strong>Dispatching SES Secure Key Notification & Registering Switchboard...</strong>";
                 
-                // Absolute domain endpoint restored to successfully hit the server route
                 const serverEndpoint = 'https://spookyfied.com/transfer';
 
                 const response = await fetch(serverEndpoint, {
@@ -535,11 +534,10 @@
                 feedback.className = 'feedback-panel feedback-success';
                 feedback.innerHTML = `<strong>Transmission Initialized!</strong> Active Spooky Key verified for [${email}].<br><span style="color: #ffb703; font-weight: bold;">CRITICAL NOTICE: Keep this browser tab open</span> while the recipient retrieves the file. Polling switchboard for peer connection...`;
 
-                // Poll the switchboard for the receiver's answer using the absolute domain path[cite: 3]
                 let answerFound = false;
                 for (let i = 0; i < 90; i++) {
                     await new Promise(r => setTimeout(r, 2000));
-                    const checkRes = await fetch('https://spookyfied.com/api/signal/offer/' + encodeURIComponent(assetId));[cite: 3]
+                    const checkRes = await fetch('https://spookyfied.com/api/signal/offer/' + encodeURIComponent(assetId));
                     if (checkRes.ok) {
                         const checkData = await checkRes.json();
                         if (checkData.answer) {
