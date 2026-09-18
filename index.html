@@ -675,12 +675,13 @@
             });
         }
 
-        async function startStripeCheckout() {
+async function startStripeCheckout() {
             const stripeBtn = document.getElementById('stripe-checkout-btn');
             stripeBtn.innerText = "Connecting to Secure Gateway...";
             stripeBtn.disabled = true;
 
             try {
+                // Use a relative path so it automatically uses the active domain name
                 const response = await fetch('/create-checkout-session', {
                     method: 'POST',
                     headers: {
