@@ -640,8 +640,8 @@
                 cartList.appendChild(li);
             });
 
-            // Payment and confirmation block with Zelle/Cash App first, plus a signature block
-            emailBody += `%0D%0ATotal Due: $${total.toFixed(2)}%0D%0A%0D%0A=== ACCEPTED PAYMENT METHODS ===%0D%0ANote: Orders must be prepaid before baking.%0D%0A- Zelle: 623-455-1135 (Jamie Blades)%0D%0A- Cash App: $JamieBlades%0D%0A- Venmo: @Jamie-Blades-1%0D%0A%0D%0A=== MY PAYMENT CONFIRMATION ===%0D%0AI paid via (choose one):%0D%0A- Zelle Name & Confirmation: %0D%0A- Cash App Handle & Confirmation: %0D%0A- Venmo Handle & Confirmation: %0D%0A%0D%0AThank you!%0D%0AMy Name: %0D%0AMy Phone: `;
+            // Payment and confirmation block with clear prompts for handle and receipt code
+            emailBody += `%0D%0ATotal Due: $${total.toFixed(2)}%0D%0A%0D%0A=== ACCEPTED PAYMENT METHODS ===%0D%0ANote: Orders must be prepaid before baking.%0D%0A- Zelle: 623-455-1135 (Jamie Blades)%0D%0A- Cash App: $JamieBlades%0D%0A- Venmo: @Jamie-Blades-1%0D%0A%0D%0A=== MY PAYMENT CONFIRMATION ===%0D%0AI paid via (choose one):%0D%0A- Cash App: [Your Handle]     [Receipt/Confirmation #]%0D%0A- Venmo: [Your Handle]     [Receipt/Confirmation #]%0D%0A- Zelle: [Your Name]     [Receipt/Confirmation #]%0D%0A%0D%0AThank you!%0D%0AMy Name: %0D%0AMy Phone: `;
             
             cartTotal.innerText = `Total: $${total.toFixed(2)}`;
             checkoutLink.href = `mailto:simplesourdough4u@yahoo.com?subject=New%20Order%20-%20Total%20$${total.toFixed(2)}&body=${emailBody}`;
