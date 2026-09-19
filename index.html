@@ -61,6 +61,13 @@
                 flex-direction: column;
                 text-align: center;
             }
+            header h1 {
+                font-size: 3em; /* Scales the giant title down so it fits on mobile screens */
+                word-wrap: break-word;
+            }
+            .logo-img {
+                max-height: 180px; /* Slightly smaller logo for mobile viewports */
+            }
         }
         nav {
             background-color: var(--secondary);
@@ -241,10 +248,11 @@
             padding: 0.5rem 0;
             border-bottom: 1px solid #edf2ec;
         }
-        .cart-item-controls {
+		.cart-item-controls {
             display: flex;
             align-items: center;
             gap: 8px;
+            white-space: nowrap; /* Prevents awkward text/control wrapping */
         }
         .qty-btn {
             background-color: var(--secondary);
