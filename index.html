@@ -43,7 +43,7 @@
         }
         header h1 {
             font-family: 'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif;
-            font-size: 2.3em; /* Scaled down so it fits comfortably on full-size screens without touching the edges */
+            font-size: 3em; /* Clean and proportional on full desktop screens */
             margin: 0;
             font-weight: normal;
             letter-spacing: 1px;
@@ -63,18 +63,18 @@
                 padding: 0 0.5rem;
             }
             header {
-                padding: 1.5rem 0.5rem; /* Reduces side padding so text has more room */
+                padding: 1.5rem 0.5rem;
             }
             header h1 {
-                font-size: 2.2rem; /* Drops size down securely so the full name fits mobile screens */
-                word-break: break-word;
+                font-size: 2em; /* Small enough to fit phone screens */
+                white-space: nowrap; /* Forces "SimpleSourdough4U" to stay locked on one single line */
                 letter-spacing: 0px;
             }
             .logo-img {
                 max-height: 160px; 
             }
             header p {
-                font-size: 1rem; /* Scales subtitle text down to prevent side clipping */
+                font-size: 1rem;
             }
         }
         nav {
@@ -256,7 +256,7 @@
             padding: 0.5rem 0;
             border-bottom: 1px solid #edf2ec;
         }
-		.cart-item-controls {
+        .cart-item-controls {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -666,6 +666,7 @@
         function updateProductCardsUI() {
             products.forEach(prod => {
                 const container = document.getElementById(`btn-container-${prod.name}`);
+                info = !container ? null : container; // safe guard
                 if (!container) return;
 
                 const cartItem = cart.find(i => i.name === prod.name);
