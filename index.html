@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Sourdough 4 U</title>
+    <title>SimpleSourdough4U</title>
     <style>
         :root {
             --primary: #4A5D23;      /* Olive Leaf for Nav & Accents */
@@ -312,7 +312,7 @@
         <div class="header-content">
             <img src="Jamies_Logo.png" alt="Simple Sourdough Logo" class="logo-img">
             <div style="text-align: center;">
-                <h1>Simple Sourdough 4 U</h1>
+                <h1>SimpleSourdough4U</h1>
                 <p>Artisan Breads, Treats & Goodness Made from Simple Ingredients</p>
                 <p>Micro Bakery - Items Must Be Picked Up - NO SHIPPING</p>
                 <p>Follow Me On Instagram @simplesourdough4u</p>
@@ -532,7 +532,7 @@
     </div>
 
     <footer id="contact">
-        <p><strong>Simple Sourdough 4 U</strong></p>
+        <p><strong>SimpleSourdough4U</strong></p>
         <p>Questions or custom orders? Email us at: <a href="mailto:simplesourdough4u@yahoo.com">simplesourdough4u@yahoo.com</a></p>
     </footer>
 
@@ -619,7 +619,7 @@
             checkoutLink.style.display = 'block';
 
             let total = 0;
-            let emailBody = "Hello Simple Sourdough 4 U,%0D%0A%0D%0AI would like to place an order for:%0D%0A";
+            let emailBody = "Hello SimpleSourdough4U,%0D%0A%0D%0AI would like to place an order for:%0D%0A";
 
             cart.forEach((item, index) => {
                 let itemTotal = item.price * item.quantity;
@@ -640,8 +640,8 @@
                 cartList.appendChild(li);
             });
 
-            // Embedded Payment Options and Handles right in the email draft
-            emailBody += `%0D%0ATotal Due: $${total.toFixed(2)}%0D%0A%0D%0A=== CHOOSE YOUR PAYMENT METHOD ===%0D%0A1. Venmo: @Jamie-Blades-1%0D%0A2. Cash App: \$JamieBlades%0D%0A3. Zelle: 623-455-1135 (Jamie Blades)%0D%0A%0D%0A--- MY PAYMENT CONFIRMATION ---%0D%0AI paid via [ Venmo / Cash App / Zelle ] with handle/confirmation: %0D%0A%0D%0APlease confirm receipt and pickup details!`;
+            // Embedded Payment Options and Handles with clear prepayment notes
+            emailBody += `%0D%0ATotal Due: $${total.toFixed(2)}%0D%0A%0D%0A=== ACCEPTED PAYMENT METHODS ===%0D%0ANote: All orders must be prepaid prior to baking.%0D%0A1. Venmo: @Jamie-Blades-1%0D%0A2. Cash App: \$JamieBlades%0D%0A3. Zelle: 623-455-1135 (Jamie Blades)%0D%0A%0D%0A--- MY PAYMENT CONFIRMATION ---%0D%0AI paid via [ Venmo / Cash App / Zelle ] with confirmation / handle: %0D%0A(Reply with this information so Jamie can verify payment!)`;
             
             cartTotal.innerText = `Total: $${total.toFixed(2)}`;
             checkoutLink.href = `mailto:simplesourdough4u@yahoo.com?subject=New%20Order%20-%20Total%20$%{total.toFixed(2)}&body=${emailBody}`;
