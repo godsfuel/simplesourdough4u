@@ -60,13 +60,21 @@
             .header-content {
                 flex-direction: column;
                 text-align: center;
+                padding: 0 0.5rem;
+            }
+            header {
+                padding: 1.5rem 0.5rem; /* Reduces side padding so text has more room */
             }
             header h1 {
-                font-size: 3em; /* Scales the giant title down so it fits on mobile screens */
-                word-wrap: break-word;
+                font-size: 2.2rem; /* Drops size down securely so the full name fits mobile screens */
+                word-break: break-word;
+                letter-spacing: 0px;
             }
             .logo-img {
-                max-height: 180px; /* Slightly smaller logo for mobile viewports */
+                max-height: 160px; 
+            }
+            header p {
+                font-size: 1rem; /* Scales subtitle text down to prevent side clipping */
             }
         }
         nav {
