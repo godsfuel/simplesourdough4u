@@ -528,7 +528,7 @@
             </ul>
             <div class="cart-total" id="cart-total">Total: $0.00</div>
             
-            <!-- Stripe Payment Link Checkout Button with Quantity Multiplier -->
+            <!-- Stripe Payment Link Checkout Button with Prefilled Amount Parameter -->
             <a href="https://buy.stripe.com/9B628qcfkb47gKn5wS3sI00" class="checkout-btn" id="stripe-checkout-btn" target="_blank" style="display:none;">Pay Securely with Stripe (All Payment Methods)</a>
             
             <!-- Fallback / Alternative Email Order Button -->
@@ -652,9 +652,10 @@
             cartTotal.innerText = `Total: $${total.toFixed(2)}`;
             checkoutLink.href = `mailto:simplesourdough4u@yahoo.com?subject=New%20Sourdough%20Order&body=${emailBody}`;
 
-            // Dynamically set the Stripe payment link URL with the calculated total as quantity
+            // Dynamically set the Stripe payment link URL using prefilled_amount in cents
             const baseStripeUrl = "https://buy.stripe.com/9B628qcfkb47gKn5wS3sI00";
-            stripeBtn.href = `${baseStripeUrl}?quantity=${Math.round(total)}`;
+            const amountInCents = Math.round(total * 100);
+            stripeBtn.href = `${baseStripeUrl}?prefilled_amount=${amountInCents}`;
         }
 
         function updateProductCardsUI() {
