@@ -42,13 +42,8 @@
             border-radius: 8px;
         }
         header h1 {
-            font-family: 'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif;
-            font-size: 5em;
-            margin: 0;
-            font-weight: normal;
-            letter-spacing: 1px;
-            text-shadow: 1px 2px 4px rgba(0,0,0,0.15);
-        }
+    font-size: 8vw; /* Scales dynamically based on the exact width of the screen */
+}
         header p {
             font-size: 1.3rem;
             margin-top: 0.75rem;
@@ -642,14 +637,14 @@
                 total += itemTotal;
                 emailBody += `- ${item.name} (Qty: ${item.quantity}) - $${itemTotal.toFixed(2)}%0D%0A`;
                 
-                const li = document.createElement('li');
+			const li = document.createElement('li');
                 li.innerHTML = `
                     <span>${item.name} ($${item.price.toFixed(2)} each)</span>
                     <div class="cart-item-controls">
                         <button class="qty-btn" onclick="changeQuantityByIndex(${index}, -1)">-</button>
                         <span>${item.quantity}</span>
                         <button class="qty-btn" onclick="changeQuantityByIndex(${index}, 1)">+</button>
-                        <span>$${itemTotal.toFixed(2)}</span>
+                        <span style="min-width: 65px; text-align: right;">$${itemTotal.toFixed(2)}</span>
                         <button class="qty-btn remove-btn" onclick="removeFromCart(${index})">Remove</button>
                     </div>
                 `;
