@@ -43,7 +43,7 @@
         }
         header h1 {
             font-family: 'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif;
-            font-size: 5em; /* Clean and proportional on full desktop screens */
+            font-size: 5em;
             margin: 0;
             font-weight: normal;
             letter-spacing: 1px;
@@ -66,8 +66,8 @@
                 padding: 1.5rem 0.5rem;
             }
             header h1 {
-                font-size: 2em; /* Small enough to fit phone screens */
-                white-space: nowrap; /* Forces "SimpleSourdough4U" to stay locked on one single line */
+                font-size: 2em;
+                white-space: nowrap;
                 letter-spacing: 0px;
             }
             .logo-img {
@@ -260,7 +260,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            white-space: nowrap; /* Prevents awkward text/control wrapping */
+            white-space: nowrap;
         }
         .qty-btn {
             background-color: var(--secondary);
@@ -379,7 +379,7 @@
                         </div>
                     </div>
                 </div>
-				<div class="product-card">
+                <div class="product-card">
                     <img src="Pumpkin_Loaf_Display.jpg" alt="Holiday Pumpkin Loaf Display" class="item-photo">
                     <div class="item-content">
                         <div class="item-details">
@@ -393,7 +393,7 @@
                             </div>
                         </div>
                     </div>
-				</div>
+                </div>
                 <div class="product-card">
                     <img src="Pancake_Mix.jpg" alt="Sourdough Pancake Mix" class="item-photo">
                     <div class="item-content">
@@ -411,6 +411,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Muffins & Cinnamon Rolls -->
         <div class="menu-category">
             <h3>Sourdough Muffins & Cinnamon Rolls</h3>
@@ -445,9 +446,6 @@
                         </div>
                     </div>
                 </div>
-		<div class="menu-category">
-			<h3>Sourdough Cookies & Treats</h3>
-            <div class="product-grid">
                 <div class="product-card">
                     <img src="Pumpkin_Rolls.jpg" alt="Sourdough Pumpkin Rolls" class="item-photo">
                     <div class="item-content">
@@ -462,10 +460,14 @@
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>
             </div>
         </div>
+
         <!-- Cookies & Treats -->
+        <div class="menu-category">
+            <h3>Sourdough Cookies & Treats</h3>
+            <div class="product-grid">
                 <div class="product-card">
                     <img src="Oreos2.jpg" alt="Sourdough Oreo Cookies" class="item-photo">
                     <div class="item-content">
@@ -481,7 +483,7 @@
                         </div>
                     </div>
                 </div>
-				<div class="product-card">
+                <div class="product-card">
                     <img src="Peanut_Butter_Oreos.jpg" alt="Sourdough Peanut Butter Oreo Cookies" class="item-photo">
                     <div class="item-content">
                         <div class="item-details">
@@ -492,11 +494,11 @@
                             <span class="price">$15.00</span>
                             <div id="btn-container-Sourdough Peanut Butter Oreo Cookies (6-pack)">
                                 <button onclick="addToCart('Sourdough Peanut Butter Oreo Cookies (6-pack)', 15.00)">Add to Cart</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="product-card">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
                     <img src="Chocolate_Chip_Cookies.jpg" alt="Sourdough Chocolate Chip Cookies" class="item-photo">
                     <div class="item-content">
                         <div class="item-details">
@@ -510,8 +512,8 @@
                             </div>
                         </div>
                     </div>
-                </div>				
-	            <div class="product-card">
+                </div>                
+                <div class="product-card">
                     <img src="Sourdough_Reese's_Pieces_Cookies.jpg" alt="Sourdough Reese's Pieces Cookies" class="item-photo">
                     <div class="item-content">
                         <div class="item-details">
@@ -526,7 +528,7 @@
                         </div>
                     </div>
                 </div>
-				<div class="product-card">
+                <div class="product-card">
                     <img src="Sourdough_Starter.jpg" alt="Sourdough Starter" class="item-photo">
                     <div class="item-content">
                         <div class="item-details">
@@ -539,9 +541,9 @@
                                 <button onclick="addToCart('Sourdough Starter', 5.00)">Add to Cart</button>
                             </div>
                         </div>
-                    </div>				
+                    </div>                
                 </div>
-			</div>
+            </div>
         </div>
 
         <!-- Cart Section -->
@@ -572,14 +574,14 @@
             { name: 'Original Sourdough Loaf', price: 10.00 },
             { name: 'Jalapeño Cheddar Sourdough Loaf', price: 15.00 },
             { name: 'Sourdough Pancake Mix', price: 6.00 },
-			{ name: 'Holiday Pumpkin Loaf', price: 10.00 },
+            { name: 'Holiday Pumpkin Loaf', price: 10.00 },
             { name: 'Coffee Cake Muffins (6-pack)', price: 10.00 },
             { name: 'Sourdough Cinnamon Rolls (6-pack)', price: 20.00 },
             { name: 'Pumpkin Cinnamon Rolls (6-pack)', price: 20.00 }, 
             { name: 'Sourdough Oreo Cookies (6-pack)', price: 15.00 },
-			{ name: 'Sourdough Peanut Butter Oreo Cookies (6-pack)', price: 15.00 },  
-			{ name: 'Sourdough Chocolate Chip Cookies (12-pack)', price: 15.00 },
-			{ name: 'Sourdough Starter', price: 5.00 },
+            { name: 'Sourdough Peanut Butter Oreo Cookies (6-pack)', price: 15.00 },  
+            { name: 'Sourdough Chocolate Chip Cookies (12-pack)', price: 15.00 },
+            { name: 'Sourdough Starter', price: 5.00 },
             { name: "Sourdough Reese's Pieces Cookies (12-pack)", price: 15.00 }
         ];
 
@@ -656,7 +658,7 @@
                 total += itemTotal;
                 emailBody += `- ${item.name} (Qty: ${item.quantity}) - $${itemTotal.toFixed(2)}%0D%0A`;
                 
-			const li = document.createElement('li');
+                const li = document.createElement('li');
                 li.innerHTML = `
                     <span>${item.name} ($${item.price.toFixed(2)} each)</span>
                     <div class="cart-item-controls">
@@ -680,7 +682,6 @@
         function updateProductCardsUI() {
             products.forEach(prod => {
                 const container = document.getElementById(`btn-container-${prod.name}`);
-                info = !container ? null : container; // safe guard
                 if (!container) return;
 
                 const cartItem = cart.find(i => i.name === prod.name);
