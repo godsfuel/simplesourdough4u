@@ -558,13 +558,13 @@
             <div class="cart-total" id="cart-total">Total: $0.00</div>
             
             <!-- Primary Order Submission Button -->
-            <a href="mailto:simplesourdough4u@outlook.com?subject=New%20Sourdough%20Order" class="checkout-btn email-order-btn" id="checkout-link" style="display:none;">Submit Order--Launches Your Email Program</a>
+            <a href="mailto:simplesourdough4u@yahoo.com?subject=New%20Sourdough%20Order" class="checkout-btn email-order-btn" id="checkout-link" style="display:none;">Submit Order--Launches Your Email Program</a>
         </div>
     </div>
 
     <footer id="contact">
         <p><strong>SimpleSourdough4U</strong></p>
-        <p>Questions or custom orders? Email us at: <a href="mailto:simplesourdough4u@outlook.com">simplesourdough4u@outlook.com</a></p>
+        <p>Questions or custom orders? Email us at: <a href="mailto:simplesourdough4u@yahoo.com">simplesourdough4u@yahoo.com</a></p>
     </footer>
 
     <script>
@@ -676,7 +676,7 @@
             emailBody += `\nTotal Due: $${total.toFixed(2)}\n\n=== ACCEPTED PAYMENT METHODS ===\nNote: Orders must be prepaid before baking.\n- Zelle: 623-455-1135 (Jamie Blades)\n- Cash App: $JamieBlades\n- Venmo: @Jamie-Blades-1\n\n=== MY PAYMENT CONFIRMATION ===\nI paid via (choose one):\n- Cash App: [Your Handle]     [Receipt/Confirmation #]\n- Venmo: [Your Handle]     [Receipt/Confirmation #]\n- Zelle: [Your Name]     [Receipt/Confirmation #]\n\nThank you!\nMy Name: \nMy Phone: `;
             
             cartTotal.innerText = `Total: $${total.toFixed(2)}`;
-            checkoutLink.href = `mailto:simplesourdough4u@outlook.com?subject=` + encodeURIComponent(`New Order - Total $${total.toFixed(2)}`) + `&body=` + encodeURIComponent(emailBody);
+            checkoutLink.href = `mailto:simplesourdough4u@yahoo.com?subject=` + encodeURIComponent(`New Order - Total $${total.toFixed(2)}`) + `&body=` + encodeURIComponent(emailBody);
         }
 
         function updateProductCardsUI() {
