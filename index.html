@@ -330,7 +330,7 @@
             <div style="text-align: center;">
                 <h1>SimpleSourdough4U</h1>
                 <p>Artisan Breads, Treats & Goodness Made from Simple Ingredients</p>
-                <p>Micro Bakery - Items Must Be Picked Up - NO SHIPPING</p>
+                <p>Micro Bakery - Items Must Be Picked Up In Goodyear, Az.</p>
                 <p>Follow Me On Instagram @simplesourdough4u</p>
             </div>
         </div>
@@ -379,43 +379,41 @@
                         </div>
                     </div>
                 </div>
-                <div class="product-card">
-                    <img src="Pancake_Mix.jpg" alt="Sourdough Discard Pancake Mix" class="item-photo">
+				<div class="product-card">
+                    <img src="Pumpkin_Loaf_Display.jpg" alt="Holiday Pumpkin Loaf Display" class="item-photo">
                     <div class="item-content">
                         <div class="item-details">
-                            <h4>Sourdough Discard Pancake Mix</h4>
+                            <h4>Holiday Pumpkin Loaf</h4>
+                            <p>Pumpkin Shape Holiday Sourdough Loaf</p>
+                        </div>
+                        <div class="item-footer">
+                            <span class="price">$10.00</span>
+                            <div id="btn-container-Holiday Pumpkin Loaf">
+                                <button onclick="addToCart('Holiday Pumpkin Loaf', 10.00)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                <div class="product-card">
+                    <img src="Pancake_Mix.jpg" alt="Sourdough Pancake Mix" class="item-photo">
+                    <div class="item-content">
+                        <div class="item-details">
+                            <h4>Sourdough Pancake Mix</h4>
                             <p>Makes about 9 fluffy, delicious pancakes.</p>
                         </div>
                         <div class="item-footer">
                             <span class="price">$6.00</span>
-                            <div id="btn-container-Sourdough Discard Pancake Mix">
-                                <button onclick="addToCart('Sourdough Discard Pancake Mix', 6.00)">Add to Cart</button>
+                            <div id="btn-container-Sourdough Pancake Mix">
+                                <button onclick="addToCart('Sourdough Pancake Mix', 6.00)">Add to Cart</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <!-- Muffins & Cinnamon Rolls -->
         <div class="menu-category">
             <h3>Sourdough Muffins & Cinnamon Rolls</h3>
-            <div class="product-grid">
-                <div class="product-card">
-                    <img src="Lemon_Blueberry_Muffins.jpg" alt="Sourdough Lemon Blueberry Muffins" class="item-photo">
-                    <div class="item-content">
-                        <div class="item-details">
-                            <h4>Sourdough Lemon Blueberry Muffins (6-pack)</h4>
-                            <p>Bright lemon zest loaded with juicy blueberries.</p>
-                        </div>
-                        <div class="item-footer">
-                            <span class="price">$10.00</span>
-                            <div id="btn-container-Lemon Blueberry Muffins (6-pack)">
-                                <button onclick="addToCart('Lemon Blueberry Muffins (6-pack)', 10.00)">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="product-grid">                
                 <div class="product-card">
                     <img src="Coffee_Cake_Muffins.jpg" alt="Sourdough Coffee Cake Muffins" class="item-photo">
                     <div class="item-content">
@@ -528,7 +526,22 @@
                         </div>
                     </div>
                 </div>
-            </div>
+				<div class="product-card">
+                    <img src="Sourdough_Starter.jpg" alt="Sourdough Starter" class="item-photo">
+                    <div class="item-content">
+                        <div class="item-details">
+                            <h4>Sourdough Starter</h4>
+                            <p>Sourdough Starter - Make Your Own Sourdough Bread</p>
+                        </div>
+                        <div class="item-footer">
+                            <span class="price">$5.00</span>
+                            <div id="btn-container-Sourdough Starter">
+                                <button onclick="addToCart('Sourdough Starter', 5.00)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>				
+                </div>
+			</div>
         </div>
 
         <!-- Cart Section -->
@@ -558,14 +571,15 @@
         const products = [
             { name: 'Original Sourdough Loaf', price: 10.00 },
             { name: 'Jalapeño Cheddar Sourdough Loaf', price: 15.00 },
-            { name: 'Sourdough Discard Pancake Mix', price: 6.00 },
-            { name: 'Lemon Blueberry Muffins (6-pack)', price: 10.00 },
+            { name: 'Sourdough Pancake Mix', price: 6.00 },
+			{ name: 'Holiday Pumpkin Loaf', price: 10.00 },
             { name: 'Coffee Cake Muffins (6-pack)', price: 10.00 },
             { name: 'Sourdough Cinnamon Rolls (6-pack)', price: 20.00 },
             { name: 'Pumpkin Cinnamon Rolls (6-pack)', price: 20.00 }, 
             { name: 'Sourdough Oreo Cookies (6-pack)', price: 15.00 },
 			{ name: 'Sourdough Peanut Butter Oreo Cookies (6-pack)', price: 15.00 },  
 			{ name: 'Sourdough Chocolate Chip Cookies (12-pack)', price: 15.00 },
+			{ name: 'Sourdough Starter', price: 5.00 },
             { name: "Sourdough Reese's Pieces Cookies (12-pack)", price: 15.00 }
         ];
 
