@@ -120,7 +120,6 @@
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
         }
-        /* Strict 3-Column Grid for Horizontal Layout */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -190,7 +189,6 @@
         button:hover {
             background-color: var(--secondary);
         }
-        /* Product card inline stepper container */
         .card-stepper {
             display: flex;
             align-items: center;
@@ -220,7 +218,6 @@
             color: var(--secondary);
             margin-right: 4px;
         }
-
         #cart-section {
             background: #fff;
             border: 2px solid var(--primary);
@@ -288,26 +285,52 @@
             margin-bottom: 1rem;
             color: var(--secondary);
         }
+        .checkout-container {
+            display: none;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+            color: var(--secondary);
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.6rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        .payment-info-box {
+            background-color: var(--accent);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        .payment-info-box ul {
+            margin: 0.5rem 0 0 1.2rem;
+            padding: 0;
+        }
         .checkout-btn {
             display: block;
             width: 100%;
-            background-color: var(--secondary);
+            background-color: #7BA05B;
             color: white;
             text-align: center;
             padding: 0.85rem;
             font-size: 1.2rem;
-            text-decoration: none;
             border-radius: 4px;
             font-weight: bold;
             border: none;
             cursor: pointer;
-            margin-bottom: 0.5rem;
         }
         .checkout-btn:hover {
             background-color: var(--primary);
-        }
-        .email-order-btn {
-            background-color: #7BA05B;
         }
         footer {
             text-align: center;
@@ -546,7 +569,7 @@
             </div>
         </div>
 
-        <!-- Cart Section -->
+        <!-- Cart Section with Formspree Web Form -->
         <div id="cart-section">
             <div class="cart-header-row">
                 <h3 style="margin:0; color:var(--secondary);" id="cart">Your Order Cart (<span id="cart-count">0</span> items)</h3>
@@ -557,8 +580,51 @@
             </ul>
             <div class="cart-total" id="cart-total">Total: $0.00</div>
             
-            <!-- Primary Order Submission Button -->
-            <a href="mailto:simplesourdough4u@yahoo.com?subject=New%20Sourdough%20Order" class="checkout-btn email-order-btn" id="checkout-link" style="display:none;">Submit Order--Launches Your Email Program</a>
+            <!-- Formspree Checkout Form (Integrated with xgavakdr) -->
+            <div id="checkout-container" class="checkout-container">
+                <form action="https://formspree.io/f/xgavakdr" method="POST">
+                    
+                    <!-- Hidden fields that pass the full structured cart details -->
+                    <input type="hidden" name="order_details" id="form-order-details">
+                    <input type="hidden" name="order_total" id="form-order-total">
+
+                    <div class="payment-info-box">
+                        <strong>Accepted Payment Methods (Prepay Required):</strong>
+                        <ul>
+                            <li><strong>Zelle:</strong> 623-455-1135 (Jamie Blades)</li>
+                            <li><strong>Cash App:</strong> $JamieBlades</li>
+                            <li><strong>Venmo:</strong> @Jamie-Blades-1</li>
+                        </ul>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer-name">Your Full Name:</label>
+                        <input type="text" id="customer-name" name="name" required placeholder="Enter your name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer-phone">Your Phone Number:</label>
+                        <input type="tel" id="customer-phone" name="phone" required placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="payment-method">I Paid Via:</label>
+                        <select id="payment-method" name="payment_method" required>
+                            <option value="">-- Select Payment Method --</option>
+                            <option value="Cash App">Cash App</option>
+                            <option value="Venmo">Venmo</option>
+                            <option value="Zelle">Zelle</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="payment-reference">Payment Handle & Confirmation / Receipt #:</label>
+                        <input type="text" id="payment-reference" name="payment_reference" required placeholder="e.g., $YourHandle / Confirmation #12345">
+                    </div>
+
+                    <button type="submit" class="checkout-btn">Submit Order to Jamie</button>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -633,7 +699,9 @@
             const cartList = document.getElementById('cart-items');
             const cartTotal = document.getElementById('cart-total');
             const cartCount = document.getElementById('cart-count');
-            const checkoutLink = document.getElementById('checkout-link');
+            const checkoutContainer = document.getElementById('checkout-container');
+            const formOrderDetails = document.getElementById('form-order-details');
+            const formOrderTotal = document.getElementById('form-order-total');
 
             cartList.innerHTML = '';
 
@@ -644,19 +712,19 @@
             if (cart.length === 0) {
                 cartList.innerHTML = '<li>Your cart is currently empty.</li>';
                 cartTotal.innerText = 'Total: $0.00';
-                checkoutLink.style.display = 'none';
+                checkoutContainer.style.display = 'none';
                 return;
             }
 
-            checkoutLink.style.display = 'block';
+            checkoutContainer.style.display = 'block';
 
             let total = 0;
-            let emailBody = "Hello SimpleSourdough4U,\n\nI would like to place an order for:\n";
+            let summaryText = "";
 
             cart.forEach((item, index) => {
                 let itemTotal = item.price * item.quantity;
                 total += itemTotal;
-                emailBody += `- ${item.name} (Qty: ${item.quantity}) - $${itemTotal.toFixed(2)}\n`;
+                summaryText += `${item.name} (Qty: ${item.quantity}) - $${itemTotal.toFixed(2)} | `;
                 
                 const li = document.createElement('li');
                 li.innerHTML = `
@@ -671,12 +739,12 @@
                 `;
                 cartList.appendChild(li);
             });
-
-            // Payment and confirmation block using standard clean newlines
-            emailBody += `\nTotal Due: $${total.toFixed(2)}\n\n=== ACCEPTED PAYMENT METHODS ===\nNote: Orders must be prepaid before baking.\n- Zelle: 623-455-1135 (Jamie Blades)\n- Cash App: $JamieBlades\n- Venmo: @Jamie-Blades-1\n\n=== MY PAYMENT CONFIRMATION ===\nI paid via (choose one):\n- Cash App: [Your Handle]     [Receipt/Confirmation #]\n- Venmo: [Your Handle]     [Receipt/Confirmation #]\n- Zelle: [Your Name]     [Receipt/Confirmation #]\n\nThank you!\nMy Name: \nMy Phone: `;
             
             cartTotal.innerText = `Total: $${total.toFixed(2)}`;
-            checkoutLink.href = `mailto:simplesourdough4u@yahoo.com?subject=` + encodeURIComponent(`New Order - Total $${total.toFixed(2)}`) + `&body=` + encodeURIComponent(emailBody);
+
+            // Populate hidden inputs so Formspree emails everything clearly to Jamie
+            formOrderDetails.value = summaryText;
+            formOrderTotal.value = `$${total.toFixed(2)}`;
         }
 
         function updateProductCardsUI() {
