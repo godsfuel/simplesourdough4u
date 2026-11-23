@@ -299,13 +299,23 @@
             margin-bottom: 0.3rem;
             color: var(--secondary);
         }
-        .form-group input, .form-group select {
+        .form-group input, .form-group select, .form-group textarea {
             width: 100%;
             padding: 0.6rem;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 1rem;
             box-sizing: border-box;
+        }
+        .form-group textarea {
+            font-family: inherit;
+            resize: vertical;
+            margin-top: 0.5rem;
+        }
+        .optional-note {
+            font-weight: normal;
+            color: #777;
+            font-size: 0.9rem;
         }
         .payment-info-box {
             background-color: var(--accent);
@@ -356,6 +366,7 @@
                 <h1>SimpleSourdough4U</h1>
                 <p>Artisan Breads, Treats & Goodness Made from Simple Ingredients</p>
                 <p>Micro Bakery - Items Must Be Picked Up In Goodyear, Az.</p>
+                <p>Please Allow 48 Hours - Every Order Is Baked Fresh From Scratch</p>
                 <p>Follow Me On Instagram @simplesourdough4u</p>
             </div>
         </div>
@@ -658,6 +669,21 @@
                         <input type="text" id="payment-reference" name="payment_reference" required placeholder="e.g., $YourHandle / Confirmation #12345">
                     </div>
 
+                    <div class="form-group">
+                        <label for="heard-about">How Did You Hear About Us? <span class="optional-note">(optional)</span></label>
+                        <select id="heard-about" name="heard_about">
+                            <option value="">-- Select One --</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="A friend or family member">A friend or family member</option>
+                            <option value="Google or another internet search">Google or another internet search</option>
+                            <option value="Scanned a QR code">Scanned a QR code</option>
+                            <option value="Tried a sample">Tried a sample</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <textarea id="heard-about-other" name="heard_about_other" rows="3" maxlength="500" placeholder="Tell us how you found us" style="display: none;"></textarea>
+                    </div>
+
                     <button type="submit" class="checkout-btn">Submit Order to Jamie</button>
                 </form>
             </div>
@@ -671,6 +697,14 @@
 
     <script>
         let cart = [];
+
+        // "How did you hear about us?": picking Other opens a box for their own words.
+        document.getElementById('heard-about').addEventListener('change', function () {
+            const other = document.getElementById('heard-about-other');
+            const show = this.value === 'Other';
+            other.style.display = show ? 'block' : 'none';
+            if (show) other.focus(); else other.value = '';
+        });
 
         const products = [
             { name: 'Original Sourdough Loaf', price: 10.00 },
